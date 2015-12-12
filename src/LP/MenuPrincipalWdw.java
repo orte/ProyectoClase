@@ -2,10 +2,12 @@ package LP;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -14,45 +16,178 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class MenuPrincipalWdw extends JFrame implements ActionListener{
-	
-	private JPanel pane;
-	private JLabel label;
-	private JPanel opciones;
-	private JRadioButton but1;
-	private JRadioButton but2;
-	private JRadioButton but3;
+	private JPanel fondo;
 	private ButtonGroup group;
-	private JButton aceptar;
+	private JMenuBar menuBar;
+	private JMenu mnNuevo;
+	private JMenu mnModificar;
+	private JMenu mnEliminar;
+	private JMenu mnListas;
+	private JMenuItem mntmNuevoAlumno;
+	private JMenuItem mntmNuevoProfesor;
+	private JMenuItem mntmNuevoAsignatura;
+	private JMenuItem mntmModificarAlumno;
+	private JMenuItem mntmModificarProfesor;
+	private JMenuItem mntmNuevoMatricula;
+	private JMenuItem mntmNuevaImparticion;
+	private JMenuItem mntmEliminarAlumno;
+	private JMenuItem mntmEliminarProfesor;
+	private JMenuItem mntmEliminarMatricula;
+	private JMenuItem mntmEliminarImparticion;
+	private JMenuItem mntmAlumnosAlf;
+	private JMenuItem mntmProfesoresAlf;
+	private JMenuItem mntmAlumnosPorAno;
+	private JMenuItem mntmProfesoresPorDepartamento;
+	private JLabel lblDeLaUniversidad;
+	private JPanel panel;
 	
 	public MenuPrincipalWdw(){
+		setTitle("Bienvenido! Introduzca una opci\u00F3n");
 		
-		
-		label=new JLabel("Bienvenido! Introduzca una opción");
-		opciones=new JPanel(new GridLayout(3,0));
-		but1=new JRadioButton("Alta de alumno");
-		but1.setActionCommand("1");
-		but2=new JRadioButton("Modificar alumno");
-		but2.setActionCommand("2");
-		but3=new JRadioButton("Eliminar alumno");
-		but3.setActionCommand("3");
-		group=new ButtonGroup();
-		group.add(but1);
-		group.add(but2);
-		group.add(but3);
-		aceptar=new JButton("Aceptar");
-		aceptar.addActionListener(this);
-		pane.add(label, BorderLayout.PAGE_START);
-		opciones.add(but1);
-		opciones.add(but2);
-		opciones.add(but3);
-		pane.add(opciones, BorderLayout.CENTER);
-		pane.add(aceptar, BorderLayout.PAGE_END);
-		pane=(JPanel)this.getContentPane();
+		JPanel pane=(JPanel)this.getContentPane();
 		pane.setLayout(new BorderLayout());
+		try {
+			fondo=new JPanelWithBackground("logo-vector-universidad-deusto.jpg");
+			fondo.setPreferredSize(new Dimension(630,380));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.setSize(fondo.getPreferredSize());
+		//fondo=new JPanel();
+		group=new ButtonGroup();
+		pane.add(fondo, BorderLayout.CENTER);
+		fondo.setLayout(null);
+		
+		panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.NORTH);
+		
+		JLabel lblGestorDeAlumnos = new JLabel("Gestor de alumnos, profesores y asignaturas");
+		panel.add(lblGestorDeAlumnos);
+		lblGestorDeAlumnos.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblGestorDeAlumnos.setBounds(26, 0, 258, 31);
+		
+		lblDeLaUniversidad = new JLabel("de la Universidad de Deusto");
+		panel.add(lblDeLaUniversidad);
+		lblDeLaUniversidad.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDeLaUniversidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDeLaUniversidad.setBounds(58, 31, 200, 31);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnNuevo = new JMenu("Nuevo");
+		menuBar.add(mnNuevo);
+		
+		mntmNuevoAlumno = new JMenuItem("Alumno");
+		mntmNuevoAlumno.setActionCommand("nuevo alumno");
+		mntmNuevoAlumno.addActionListener(this);
+		mnNuevo.add(mntmNuevoAlumno);
+		
+		mntmNuevoProfesor = new JMenuItem("Profesor");
+		mntmNuevoProfesor.setActionCommand("nuevo profesor");
+		mntmNuevoProfesor.addActionListener(this);
+		mnNuevo.add(mntmNuevoProfesor);
+		
+		mntmNuevoAsignatura = new JMenuItem("Asignatura");
+		mntmNuevoAsignatura.setActionCommand("nueva asignatura");
+		mntmNuevoAsignatura.addActionListener(this);
+		mnNuevo.add(mntmNuevoAsignatura);
+		
+		mntmNuevoMatricula = new JMenuItem("Matr\u00EDcula");
+		mntmNuevoMatricula.setActionCommand("nueva matricula");
+		mntmNuevoMatricula.addActionListener(this);
+		mnNuevo.add(mntmNuevoMatricula);
+		
+		mntmNuevaImparticion = new JMenuItem("Impartici\u00F3n");
+		mntmNuevaImparticion.setActionCommand("nueva imparticion");
+		mntmNuevaImparticion.addActionListener(this);
+		mnNuevo.add(mntmNuevaImparticion);
+		
+		mnModificar = new JMenu("Modificar");
+		menuBar.add(mnModificar);
+		
+		mntmModificarAlumno = new JMenuItem("Alumno");
+		mntmModificarAlumno.setActionCommand("modificar alumno");
+		mntmModificarAlumno.addActionListener(this);
+		mnModificar.add(mntmModificarAlumno);
+		
+		mntmModificarProfesor = new JMenuItem("Profesor");
+		mntmModificarProfesor.setActionCommand("modificar profesor");
+		mntmModificarProfesor.addActionListener(this);
+		mnModificar.add(mntmModificarProfesor);
+		
+		mnEliminar = new JMenu("Eliminar");
+		menuBar.add(mnEliminar);
+		
+		mntmEliminarAlumno = new JMenuItem("Alumno");
+		mntmEliminarAlumno.setActionCommand("eliminar alumno");
+		mntmEliminarAlumno.addActionListener(this);
+		mnEliminar.add(mntmEliminarAlumno);
+		
+		mntmEliminarProfesor = new JMenuItem("Profesor");
+		mntmEliminarProfesor.setActionCommand("eliminar profesor");
+		mntmEliminarProfesor.addActionListener(this);
+		mnEliminar.add(mntmEliminarProfesor);
+		
+		mntmEliminarMatricula = new JMenuItem("Matr\u00EDcula");
+		mntmEliminarMatricula.setActionCommand("eliminar matricula");
+		mntmEliminarMatricula.addActionListener(this);
+		mnEliminar.add(mntmEliminarMatricula);
+		
+		mntmEliminarImparticion = new JMenuItem("Impartici\u00F3n");
+		mntmEliminarImparticion.setActionCommand("eliminar imparticion");
+		mntmEliminarImparticion.addActionListener(this);
+		mnEliminar.add(mntmEliminarImparticion);
+		
+		mnListas = new JMenu("Listas");
+		menuBar.add(mnListas);
+		
+		mntmAlumnosAlf = new JMenuItem("Alumnos por orden alfab\u00E9tico");
+		mntmAlumnosAlf.setActionCommand("alumnos alf");
+		mntmAlumnosAlf.addActionListener(this);
+		mnListas.add(mntmAlumnosAlf);
+		
+		mntmProfesoresAlf = new JMenuItem("Profesores por orden alfab\u00E9tico");
+		mntmProfesoresAlf.setActionCommand("profes alf");
+		mntmProfesoresAlf.addActionListener(this);
+		mnListas.add(mntmProfesoresAlf);
+		
+		mntmAlumnosPorAno = new JMenuItem("Alumnos por a\u00F1o de matriculaci\u00F3n");
+		mntmAlumnosPorAno.setActionCommand("alumnos por ano");
+		mntmAlumnosPorAno.addActionListener(this);
+		mnListas.add(mntmAlumnosPorAno);
+		
+		mntmProfesoresPorDepartamento = new JMenuItem("Profesores por departamento");
+		mntmProfesoresPorDepartamento.setActionCommand("profesores dept");
+		mntmProfesoresPorDepartamento.addActionListener(this);
+		mnListas.add(mntmProfesoresPorDepartamento);
+		
+		group.add(mntmNuevoAlumno);
+		group.add(mntmNuevoProfesor);
+		group.add(mntmNuevoAsignatura);
+		group.add(mntmNuevoMatricula);
+		group.add(mntmNuevaImparticion);
+		group.add(mntmModificarAlumno);
+		group.add(mntmModificarProfesor);
+		group.add(mntmEliminarAlumno);
+		group.add(mntmEliminarProfesor);
+		group.add(mntmEliminarMatricula);
+		group.add(mntmEliminarImparticion);
+		group.add(mntmAlumnosAlf);
+		group.add(mntmProfesoresAlf);
+		group.add(mntmAlumnosPorAno);
+		group.add(mntmProfesoresPorDepartamento);
+		
 		this.setVisible(true);
 	}
 
@@ -60,73 +195,26 @@ public class MenuPrincipalWdw extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		clsMenu menu=new clsMenu();
-		String command=group.getSelection().getActionCommand();
-		if(command.equals("1")){
-			menu.AltaAlumno();
-		} else if(command.equals("2")){
-			menu.ModificarAlumno();
-		} else if(command.equals("3")){
-			menu.EliminarAlumno();
+		JMenuItem a=(JMenuItem) e.getSource();
+		String command=a.getActionCommand();
+		switch (command){
+		case "nuevo alumno": menu.AltaAlumno(); break;
+		case "nuevo profesor": menu.AltaProfesor(); break;
+		case "nueva asignatura": menu.AltaAsignatura(); break;
+		case "nueva matricula": menu.Matricular(); break;
+		case "nueva imparticion": menu.Impartir(); break;
+		case "modificar alumno": menu.ModificarAlumno(); break;
+		case "modificar profesor": menu.ModificarProfesor(); break;
+		case "eliminar alumno": menu.EliminarAlumno(); break;
+		case "eliminar profesor": menu.EliminarProfesor(); break;
+		case "eliminar matricula": menu.EliminarMatricula(); break;
+		case "eliminar imparticion": menu.BorrarImparticion(); break;
+		case "alummnos alf": menu.AlumnosAlf(); break;
+		case "profesores alf": menu.ProfesoresAlf(); break;
+		case "alumnos por ano": menu.AlumnosFecha(); break;
+		case  "profesores dept": menu.ProfDepart(); break;
+		
 		}
 		this.dispose();
 	}
-	
-	
-
-	/*static clsMenu menu=new clsMenu();
-	private static final long serialVersionUID = 1L;
-	
-	public static void addComponentsToPane(Container pane){
-		BorderLayout border=new BorderLayout();
-		pane.setLayout(border);
-		JLabel label=new JLabel("Bienvenido! Introduzca una opción");
-		pane.add(label, border.PAGE_START);
-		
-		JPanel panel=new JPanel();
-		panel.setLayout(new GridLayout(3,0));
-		JRadioButton but1=new JRadioButton("1.- Alta de alumno");
-		but1.setActionCommand("1");
-		JRadioButton but2=new JRadioButton("2.- Modificar datos de alumno");
-		but2.setActionCommand("2");
-		JRadioButton but3=new JRadioButton("3.- Eliminar alumno");
-		but3.setActionCommand("3");
-		final ButtonGroup group=new ButtonGroup();
-		group.add(but1);
-		group.add(but2);
-		group.add(but3);
-		panel.add(but1);
-		panel.add(but2);
-		panel.add(but3);
-		pane.add(panel, border.CENTER);
-		
-		JPanel pan=new JPanel();
-		pan.setLayout(new FlowLayout());
-		JButton acept=new JButton("Aceptar");
-		JButton canc=new JButton("Salir");
-		acept.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				String command=group.getSelection().getActionCommand();
-				if(command.equals("1")){
-					menu.AltaAlumno();
-				} else if(command.equals("2")){
-					menu.ModificarAlumno();
-				} else if(command.equals("3")){
-					menu.EliminarAlumno();
-				}
-			}
-		});
-		pan.add(acept);
-		pan.add(canc);
-		pane.add(pan, border.PAGE_END);
-		
-	}
-	public static void createAndShowGUI(){
-		JFrame frame=new JFrame("Menú principal");
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		addComponentsToPane(frame.getContentPane());
-		
-		frame.pack();
-		frame.setVisible(true);
-	}*/
 }

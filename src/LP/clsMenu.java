@@ -15,7 +15,6 @@ public class clsMenu {
 	
 	public void MenuPrincipal (){
 		MenuPrincipalWdw principal=new MenuPrincipalWdw();
-		principal.createAndShowGUI();
 		
 		
 		/*System.out.println("Bienvenido! Introduzca una opción");
@@ -40,7 +39,6 @@ public class clsMenu {
 	public void AltaAlumno (){
 		AltaAlumnoWdw a=new AltaAlumnoWdw();
 		a.setVisible(true);
-		a.pack();
 		
 		/*int t=0;
 		do{

@@ -22,7 +22,7 @@ public class ListaWdw extends JFrame implements ActionListener {
 	private JList<String> lista;
 	private JButton seleccionar;
 	
-	public ListaWdw(LinkedList<clsAlumno> list){
+	public ListaWdw(LinkedList<Serializable> list){
 		pane=(JPanel)this.getContentPane();
 		pane.setLayout(new BorderLayout());
 		titulo=new JLabel("Seleccione el alumno que desea modificar");
