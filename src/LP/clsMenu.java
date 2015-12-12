@@ -15,9 +15,6 @@ public class clsMenu {
 	
 	public void MenuPrincipal (){
 		MenuPrincipalWdw principal=new MenuPrincipalWdw();
-		principal.createAndShowGUI();
-		
-		
 		/*System.out.println("Bienvenido! Introduzca una opción");
 		System.out.println("1.- Alta de alumno");
 		System.out.println("2.- Modificar datos de alumno");
