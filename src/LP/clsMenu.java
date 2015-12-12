@@ -15,6 +15,7 @@ public class clsMenu {
 	
 	public void MenuPrincipal (){
 		MenuPrincipalWdw principal=new MenuPrincipalWdw();
+
 		/*System.out.println("Bienvenido! Introduzca una opción");
 		System.out.println("1.- Alta de alumno");
 		System.out.println("2.- Modificar datos de alumno");
@@ -37,7 +38,6 @@ public class clsMenu {
 	public void AltaAlumno (){
 		AltaAlumnoWdw a=new AltaAlumnoWdw();
 		a.setVisible(true);
-		a.pack();
 		
 		/*int t=0;
 		do{
@@ -69,14 +69,7 @@ public class clsMenu {
 		while(t==-1);*/
 	}
 	public void ModificarAlumno(){
-		try {
-			ListaWdw lista=new ListaWdw(ges.ListaAlumnos());
-			lista.pack();
-			lista.setVisible(true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		/*clsAlumno mod=null;
 		String id;
 		int indx=-1;

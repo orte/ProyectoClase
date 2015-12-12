@@ -2,6 +2,7 @@ package LP;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,9 @@ import javax.swing.event.DocumentListener;
 import comun.DuplicadoException;
 import LN.clsAlumno;
 import LN.clsGestor;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.SwingConstants;
 
 public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentListener{
 	 
@@ -36,22 +40,31 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 	private JTextField txtId;
 	private JTextField txtAno;
 	private JButton aceptar;
+	private JPanel panel;
 	
 	public AltaAlumnoWdw(){
+		setTitle("Alta de alumno");
 		lblTitulo=new JLabel("Introduzca los datos del alumno");
 		lblNombre=new JLabel("Nombre");
+		lblNombre.setBounds(10, 2, 394, 22);
 		lblAp1=new JLabel("Primer apellido");
+		lblAp1.setBounds(10, 46, 394, 22);
 		lblAp2=new JLabel("Segundo apellido");
+		lblAp2.setBounds(10, 90, 394, 22);
 		lblId=new JLabel("ID de alumno");
+		lblId.setBounds(10, 134, 394, 22);
 		lblAno=new JLabel("Año de matriculación");
+		lblAno.setBounds(10, 178, 192, 22);
 		txtNombre=new JTextField();
+		txtNombre.setBounds(10, 24, 192, 22);
 		txtAp1=new JTextField();
+		txtAp1.setBounds(10, 68, 192, 22);
 		txtAp2=new JTextField();
+		txtAp2.setBounds(10, 112, 192, 22);
 		txtId=new JTextField();
+		txtId.setBounds(10, 156, 192, 22);
 		txtAno=new JTextField();
-		aceptar=new JButton("Aceptar");
-		aceptar.setEnabled(false);
-		aceptar.addActionListener(this);
+		txtAno.setBounds(10, 200, 192, 22);
 		txtNombre.getDocument().addDocumentListener(this);
 		txtAp1.getDocument().addDocumentListener(this);
 		txtAp2.getDocument().addDocumentListener(this);
@@ -60,9 +73,10 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 		
 		JPanel pane=(JPanel)this.getContentPane();
 		pane.setLayout(new BorderLayout());
-		pane.add(lblTitulo, BorderLayout.PAGE_START);
+		pane.add(lblTitulo, BorderLayout.NORTH);
 		
-		JPanel campos=new JPanel(new GridLayout(10,0));
+		JPanel campos=new JPanel();
+		campos.setLayout(null);
 		campos.add(lblNombre);
 		campos.add(txtNombre);
 		campos.add(lblAp1);
@@ -75,9 +89,15 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 		campos.add(txtAno);
 		pane.add(campos, BorderLayout.CENTER);
 		
-		pane.add(aceptar, BorderLayout.PAGE_END);
+		panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		aceptar=new JButton("Aceptar");
+		panel.add(aceptar);
+		aceptar.setEnabled(false);
+		aceptar.addActionListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.setSize(new Dimension(420, 315));
 	}
 
 	@Override
@@ -106,7 +126,6 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 	public void insertUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
 		if(txtNombre.getText().equals("")==false&&txtAp1.getText().equals("")==false&&txtAp2.getText().equals("")==false&&txtId.getText().equals("")==false&&txtAno.getText().equals("")==false){
-		//if(txtNombre.getText()!=null&&txtAp1.getText()!=null&&txtAp2.getText()!=null&&txtId.getText()!=null&&txtAno.getText()!=null){
 			aceptar.setEnabled(true);
 		}
 	}
