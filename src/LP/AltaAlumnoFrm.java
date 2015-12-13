@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -21,11 +22,15 @@ import javax.swing.event.DocumentListener;
 import comun.DuplicadoException;
 import LN.clsAlumno;
 import LN.clsGestor;
-import javax.swing.BoxLayout;
-import java.awt.Component;
-import javax.swing.SwingConstants;
 
-public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentListener{
+import javax.swing.BoxLayout;
+
+import java.awt.Component;
+
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+
+public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentListener{
 	 
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitulo;
@@ -38,11 +43,11 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 	private JTextField txtAp1;
 	private JTextField txtAp2;
 	private JTextField txtId;
-	private JTextField txtAno;
 	private JButton aceptar;
 	private JPanel panel;
+	private JComboBox comboBox;
 	
-	public AltaAlumnoWdw(){
+	public AltaAlumnoFrm(){
 		setTitle("Alta de alumno");
 		lblTitulo=new JLabel("Introduzca los datos del alumno");
 		lblNombre=new JLabel("Nombre");
@@ -63,13 +68,10 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 		txtAp2.setBounds(10, 112, 192, 22);
 		txtId=new JTextField();
 		txtId.setBounds(10, 156, 192, 22);
-		txtAno=new JTextField();
-		txtAno.setBounds(10, 200, 192, 22);
 		txtNombre.getDocument().addDocumentListener(this);
 		txtAp1.getDocument().addDocumentListener(this);
 		txtAp2.getDocument().addDocumentListener(this);
 		txtId.getDocument().addDocumentListener(this);
-		txtAno.getDocument().addDocumentListener(this);
 		
 		JPanel pane=(JPanel)this.getContentPane();
 		pane.setLayout(new BorderLayout());
@@ -86,8 +88,16 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 		campos.add(lblId);
 		campos.add(txtId);
 		campos.add(lblAno);
-		campos.add(txtAno);
 		pane.add(campos, BorderLayout.CENTER);
+		
+		String [] years = new String [16];
+		for (int i=0;i<years.length;i++){
+			years[i]=""+(2000+i);
+		}
+		comboBox = new JComboBox(years);
+		comboBox.setSelectedIndex(0);
+		comboBox.setBounds(10, 198, 86, 20);
+		campos.add(comboBox);
 		
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
@@ -105,11 +115,9 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 		// TODO Auto-generated method stub
 		clsGestor ges=new clsGestor();
 		try {
-			clsAlumno nuevo=ges.nuevoAlumno(txtNombre.getText(), txtAp1.getText(), txtAp2.getText(), txtId.getText(), Integer.parseInt(txtAno.getText()));
-			ExitoWdw din=new ExitoWdw(nuevo.toString());
+			clsAlumno nuevo=ges.nuevoAlumno(txtNombre.getText(), txtAp1.getText(), txtAp2.getText(), txtId.getText(), Integer.parseInt((String)comboBox.getSelectedItem()));
+			JOptionPane.showMessageDialog(this, "Enhorabuena, has dado de alta a "+nuevo.toString());;
 			this.dispose();
-			din.pack();
-			din.setVisible(true);
 		} catch (NumberFormatException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -118,14 +126,14 @@ public class AltaAlumnoWdw extends JFrame implements ActionListener, DocumentLis
 			e1.printStackTrace();
 		} catch (DuplicadoException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(this, "Ha ocurrido un error. Ya existe un alumno con este ID");
 		}
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		if(txtNombre.getText().equals("")==false&&txtAp1.getText().equals("")==false&&txtAp2.getText().equals("")==false&&txtId.getText().equals("")==false&&txtAno.getText().equals("")==false){
+		if(txtNombre.getText().equals("")==false&&txtAp1.getText().equals("")==false&&txtAp2.getText().equals("")==false&&txtId.getText().equals("")==false){
 			aceptar.setEnabled(true);
 		}
 	}

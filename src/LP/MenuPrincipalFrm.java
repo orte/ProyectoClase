@@ -1,28 +1,26 @@
 package LP;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-public class MenuPrincipalWdw extends JFrame implements ActionListener{
+public class MenuPrincipalFrm extends JFrame implements ActionListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel fondo;
 	private ButtonGroup group;
 	private JMenuBar menuBar;
@@ -48,7 +46,7 @@ public class MenuPrincipalWdw extends JFrame implements ActionListener{
 	private JLabel lblDeLaUniversidad;
 	private JPanel panel;
 	
-	public MenuPrincipalWdw(){
+	public MenuPrincipalFrm(){
 		setTitle("Bienvenido! Introduzca una opci\u00F3n");
 		
 		JPanel pane=(JPanel)this.getContentPane();
@@ -215,6 +213,5 @@ public class MenuPrincipalWdw extends JFrame implements ActionListener{
 		case  "profesores dept": menu.ProfDepart(); break;
 		
 		}
-		this.dispose();
 	}
 }

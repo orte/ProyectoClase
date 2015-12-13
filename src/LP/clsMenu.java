@@ -14,7 +14,7 @@ public class clsMenu {
 	static clsGestor ges=new clsGestor();
 	
 	public void MenuPrincipal (){
-		MenuPrincipalWdw principal=new MenuPrincipalWdw();
+		MenuPrincipalFrm principal=new MenuPrincipalFrm();
 
 		/*System.out.println("Bienvenido! Introduzca una opción");
 		System.out.println("1.- Alta de alumno");
@@ -36,7 +36,7 @@ public class clsMenu {
 	}
 
 	public void AltaAlumno (){
-		AltaAlumnoWdw a=new AltaAlumnoWdw();
+		AltaAlumnoFrm a=new AltaAlumnoFrm();
 		a.setVisible(true);
 		
 		/*int t=0;
@@ -162,7 +162,9 @@ public class clsMenu {
 		
 	}
 	public void AltaProfesor(){
-		int t=0;
+		AltaProfesorFrm a=new AltaProfesorFrm();
+		a.setVisible(true);
+		/*int t=0;
 		do{
 			System.out.println("Introduzca los datos del profesor: ");
 			System.out.println("Nombre:");
@@ -189,7 +191,7 @@ public class clsMenu {
 				t=-1;
 			}
 		}
-		while(t==-1);
+		while(t==-1);*/
 	}
 	public void ModificarProfesor(){
 		clsProfesor mod=null;
@@ -284,7 +286,9 @@ public class clsMenu {
 		
 	}
 	public void AltaAsignatura(){
-		int t=0;
+		AltaAsignaturaFrm a=new AltaAsignaturaFrm();
+		a.setVisible(true);
+		/*int t=0;
 		do{
 			System.out.println("Introduzca los datos de la asignatura: ");
 			System.out.println("Nombre:");
@@ -309,10 +313,12 @@ public class clsMenu {
 				t=-1;
 			}
 		}
-		while(t==-1);
+		while(t==-1);*/
 	}
 	public void Matricular(){
-		LinkedList<clsAsignatura> listAs=new LinkedList<clsAsignatura>();
+		NuevaMatriculaFrm a=new NuevaMatriculaFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAsignatura> listAs=new LinkedList<clsAsignatura>();
 		String idAs;
 		int indxAs=-1;
 		try{
@@ -379,10 +385,12 @@ public class clsMenu {
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		
+		*/
 	}
 	public void Impartir(){
-		LinkedList<clsAsignatura> listAs=new LinkedList<clsAsignatura>();
+		NuevoImparteFrm a=new NuevoImparteFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAsignatura> listAs=new LinkedList<clsAsignatura>();
 		try{
 			String idAs;
 			int indxAs=-1;
@@ -433,7 +441,7 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch (VacioException e){
 			System.out.println(e.getMessage()+" (no hay asignaturas dadas de alta en el sistema)");
-		}
+		}*/
 	}
 	public void EliminarMatricula(){
 		LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();

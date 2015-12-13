@@ -14,15 +14,17 @@ import javax.swing.JPanel;
 import LN.clsAlumno;
 
 
-public class ListaWdw extends JFrame implements ActionListener {
+public class ListaFrm extends JFrame implements ActionListener {
 
 	private JPanel pane;
 	private JLabel titulo;
 	private JPanel centro;
 	private JList<String> lista;
 	private JButton seleccionar;
+	private JPanel panel;
+	private JButton btnCancelar;
 	
-	public ListaWdw(LinkedList<Serializable> list){
+	public ListaFrm(LinkedList<Serializable> list){
 		pane=(JPanel)this.getContentPane();
 		pane.setLayout(new BorderLayout());
 		titulo=new JLabel("Seleccione el alumno que desea modificar");
@@ -31,10 +33,16 @@ public class ListaWdw extends JFrame implements ActionListener {
 		for(int i=0; i<str.length; i++){
 			str[i]=list.get(i).toString();
 		}
-		lista=new JList<String>(str);
+		lista=new JList();
 		pane.add(lista, BorderLayout.CENTER);
+		
+		panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.SOUTH);
 		seleccionar=new JButton("Seleccionar");
-		pane.add(seleccionar, BorderLayout.PAGE_END);
+		panel.add(seleccionar);
+		
+		btnCancelar = new JButton("Cancelar");
+		panel.add(btnCancelar);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
