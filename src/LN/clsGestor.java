@@ -63,30 +63,24 @@ public class clsGestor {
 		}
 		return indx;
 	}
-	public void ModificarAlumno(clsAlumno alumno, String nom, String ap1, String ap2, String id, int fecha) throws ParseException, IOException, DuplicadoException{
+	public void ModificarAlumno(clsAlumno alumno, String nom, String ap1, String ap2, String id, int fecha) throws ParseException, IOException{
 		LinkedList<clsAlumno> lista=ListaAlumnos();
-		lista.remove(alumno);
+		int indx=lista.indexOf(alumno);
+		//lista.remove(alumno);
 		alumno.setNombre(nom);
 		alumno.setAp1(ap1);
 		alumno.setAp2(ap2);
 		alumno.setId_alumno(id);
 		alumno.setAno_matricula(fecha);
-		HashSet<clsAlumno> set=new HashSet<clsAlumno>();
-		set.addAll(lista);
-		if(set.add(alumno)==false){
-			DuplicadoException e=new DuplicadoException();
-			throw e;
+		lista.set(indx, alumno);
+		enFicDatos f=enFicDatos.DAT_ALUMNOS;
+		dat.ResetFile(f);
+		dat.ComenzarSave(f);
+		for(clsAlumno aux:lista){
+			dat.Save(aux);
 		}
-		else{
-			lista.add(alumno);
-			enFicDatos f=enFicDatos.DAT_ALUMNOS;
-			dat.ResetFile(f);
-			dat.ComenzarSave(f);
-			for(clsAlumno aux:lista){
-				dat.Save(aux);
-			}
-			dat.TerminarSave();
-		}
+		dat.TerminarSave();
+		
 	}
 	public void BorrarAlumno(clsAlumno alumno) throws IOException{
 		LinkedList<clsAlumno> lista=ListaAlumnos();
@@ -156,21 +150,14 @@ public class clsGestor {
 		prof.setAp2(ap2);
 		prof.setId_profesor(id);
 		prof.setDepartamento(depart);
-		HashSet<clsProfesor> set=new HashSet<clsProfesor>();
-		set.addAll(lista);
-		if(set.add(prof)==false){
-			throw new DuplicadoException();
+		lista.add(prof);
+		enFicDatos f=enFicDatos.DAT_PROFESORES;
+		dat.ResetFile(f);
+		dat.ComenzarSave(f);
+		for(clsProfesor aux:lista){
+			dat.Save(aux);
 		}
-		else{
-			lista.add(prof);
-			enFicDatos f=enFicDatos.DAT_PROFESORES;
-			dat.ResetFile(f);
-			dat.ComenzarSave(f);
-			for(clsProfesor aux:lista){
-				dat.Save(aux);
-			}
-			dat.TerminarSave();
-		}
+		dat.TerminarSave();
 	}
 	public void BorrarProfesor(clsProfesor prof) throws IOException{
 		LinkedList<clsProfesor> lista=ListaProfesores();

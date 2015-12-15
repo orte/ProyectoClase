@@ -15,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class MenuPrincipalFrm extends JFrame implements ActionListener{
 	/**
@@ -47,6 +48,8 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 	private JPanel panel;
 	
 	public MenuPrincipalFrm(){
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ALUMNO\\Downloads\\Telegram Desktop\\photo_2015-05-12_20-47-13.jpg"));
+		setResizable(false);
 		setTitle("Bienvenido! Introduzca una opci\u00F3n");
 		
 		JPanel pane=(JPanel)this.getContentPane();

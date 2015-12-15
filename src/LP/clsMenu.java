@@ -70,6 +70,8 @@ public class clsMenu {
 	}
 	public void ModificarAlumno(){
 		
+		ModificarAlumnoFrm a=new ModificarAlumnoFrm();
+		a.setVisible(true);
 		/*clsAlumno mod=null;
 		String id;
 		int indx=-1;
