@@ -10,21 +10,19 @@ import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import LN.clsAlumno;
 import LN.clsGestor;
+import LN.clsProfesor;
 import comun.DuplicadoException;
 import comun.NoEncontradoException;
 
-public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionListener{
+public class ModificarProfeInternFrm extends JInternalFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitulo;
@@ -32,31 +30,31 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 	private JLabel lblAp1;
 	private JLabel lblAp2;
 	private JLabel lblId;
-	private JLabel lblAno;
+	private JLabel lblDept;
 	private JTextField txtNombre;
 	private JTextField txtAp1;
 	private JTextField txtAp2;
 	private JTextField txtId;
 	private JButton aceptar;
 	private JPanel panel;
-	private JComboBox comboBox;
-	private String id_alm;
+	private JComboBox<String> comboBox;
+	private String id_prof;
 	
-	public ModificarAlumnoInternFrm(String nombre, String ap1, String ap2, String id, String year){
+	public ModificarProfeInternFrm(String nombre, String ap1, String ap2, String id, String dept){
 		setClosable(true);
-		id_alm=id;
+		id_prof=id;
 		setTitle("Alta de alumno");
-		lblTitulo=new JLabel("Introduzca los datos del alumno");
+		lblTitulo=new JLabel("Introduzca los datos del profesor");
 		lblNombre=new JLabel("Nombre");
 		lblNombre.setBounds(10, 2, 394, 22);
 		lblAp1=new JLabel("Primer apellido");
 		lblAp1.setBounds(10, 46, 394, 22);
 		lblAp2=new JLabel("Segundo apellido");
 		lblAp2.setBounds(10, 90, 394, 22);
-		lblId=new JLabel("ID de alumno");
+		lblId=new JLabel("ID de profesor");
 		lblId.setBounds(10, 134, 394, 22);
-		lblAno=new JLabel("Año de matriculación");
-		lblAno.setBounds(10, 178, 192, 22);
+		lblDept=new JLabel("Departamento");
+		lblDept.setBounds(10, 178, 192, 22);
 		txtNombre=new JTextField();
 		txtNombre.setText(nombre);
 		txtNombre.setBounds(10, 24, 192, 22);
@@ -84,18 +82,17 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 		campos.add(txtAp2);
 		campos.add(lblId);
 		campos.add(txtId);
-		campos.add(lblAno);
+		campos.add(lblDept);
 		pane.add(campos, BorderLayout.CENTER);
 		
 		int indx=-1;
-		String [] years = new String [16];
-		for (int i=0;i<years.length;i++){
-			years[i]=""+(2000+i);
-			if (year.equals(year)){
+		String [] depts = {"Informática", "Derecho", "ADE", "Comunicación", "Magisterio"};
+		for(int i=0;i<depts.length;i++){
+			if(depts[i].equals(dept)){
 				indx=i;
 			}
 		}
-		comboBox = new JComboBox(years);
+		comboBox = new JComboBox<String>(depts);
 		comboBox.setSelectedIndex(indx);
 		comboBox.setBounds(10, 198, 86, 20);
 		campos.add(comboBox);
@@ -115,8 +112,8 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 		// TODO Auto-generated method stub
 		clsGestor ges=new clsGestor();
 		try {
-			clsAlumno mod=ges.ListaAlumnos().get(ges.BuscarAlumno(id_alm));
-			ges.ModificarAlumno(mod, txtNombre.getText(), txtAp1.getText(), txtAp2.getText(), txtId.getText(), Integer.parseInt((String)comboBox.getSelectedItem()));
+			clsProfesor mod=ges.ListaProfesores().get(ges.BuscarProfesor(id_prof));
+			ges.ModificarProfesor(mod, txtNombre.getText(), txtAp1.getText(), txtAp2.getText(), txtId.getText(), (String)comboBox.getSelectedItem());
 			JOptionPane.showMessageDialog(this, "Enhorabuena, has modificado los datos de "+mod.toString());;
 			this.dispose();
 		} catch (NumberFormatException e1) {
@@ -128,12 +125,9 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 		}  catch (NoEncontradoException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		} catch (DuplicadoException e1) {
 			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this, "Ha ocurrido un error, ya existe un alumno con este ID");
+			JOptionPane.showMessageDialog(this, "Ha ocurrido un error, ya existe un profesor con este ID");
 		}
 	}
 }

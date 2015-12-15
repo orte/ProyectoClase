@@ -124,7 +124,9 @@ public class clsMenu {
 		*/
 	}
 	public void EliminarAlumno(){
-		LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
+		EliminarAlumnoFrm a=new EliminarAlumnoFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
 		try {
 			lista=ges.ListaAlumnos();
 			ges.ComprobarVacio(lista);
@@ -160,7 +162,7 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch (VacioException e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 	}
 	public void AltaProfesor(){
@@ -196,7 +198,9 @@ public class clsMenu {
 		while(t==-1);*/
 	}
 	public void ModificarProfesor(){
-		clsProfesor mod=null;
+		ModificarProfesorFrm a=new ModificarProfesorFrm();
+		a.setVisible(true);
+		/*clsProfesor mod=null;
 		String id;
 		int indx=-1;
 		LinkedList<clsProfesor> lista=new LinkedList<clsProfesor>();
@@ -244,11 +248,13 @@ public class clsMenu {
 			System.out.println(e.getMessage());
 		} catch (IOException e){
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	public void EliminarProfesor(){
-		LinkedList<clsProfesor> lista=new LinkedList<clsProfesor>();
+		EliminarProfesorFrm a=new EliminarProfesorFrm();
+		a.setVisible(true);
+		/*LinkedList<clsProfesor> lista=new LinkedList<clsProfesor>();
 		try {
 			lista=ges.ListaProfesores();
 			ges.ComprobarVacio(lista);
@@ -284,7 +290,7 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch(VacioException e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 	}
 	public void AltaAsignatura(){
@@ -446,7 +452,9 @@ public class clsMenu {
 		}*/
 	}
 	public void EliminarMatricula(){
-		LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
+		EliminarMatriculaFrm a=new EliminarMatriculaFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
 		try {
 			lista=ges.ListaAlumnos();
 			ges.ComprobarVacio(lista);
@@ -513,7 +521,7 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch (VacioException e){
 			System.out.println(e.getMessage()+" (no hay alumnos dados de alta en el sistema)");
-		}
+		}*/
 		
 	}
 	public void BorrarImparticion(){

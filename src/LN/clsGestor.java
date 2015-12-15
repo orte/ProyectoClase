@@ -63,23 +63,29 @@ public class clsGestor {
 		}
 		return indx;
 	}
-	public void ModificarAlumno(clsAlumno alumno, String nom, String ap1, String ap2, String id, int fecha) throws ParseException, IOException{
+	public void ModificarAlumno(clsAlumno alumno, String nom, String ap1, String ap2, String id, int fecha) throws ParseException, IOException, DuplicadoException{
 		LinkedList<clsAlumno> lista=ListaAlumnos();
+		HashSet<clsAlumno> set=new HashSet<clsAlumno>();
+		set.addAll(lista);
+		set.remove(alumno);
 		int indx=lista.indexOf(alumno);
-		//lista.remove(alumno);
 		alumno.setNombre(nom);
 		alumno.setAp1(ap1);
 		alumno.setAp2(ap2);
 		alumno.setId_alumno(id);
 		alumno.setAno_matricula(fecha);
-		lista.set(indx, alumno);
-		enFicDatos f=enFicDatos.DAT_ALUMNOS;
-		dat.ResetFile(f);
-		dat.ComenzarSave(f);
-		for(clsAlumno aux:lista){
-			dat.Save(aux);
+		if(set.add(alumno)==false){
+			throw new DuplicadoException();
+		} else{
+			lista.set(indx, alumno);
+			enFicDatos f=enFicDatos.DAT_ALUMNOS;
+			dat.ResetFile(f);
+			dat.ComenzarSave(f);
+			for(clsAlumno aux:lista){
+				dat.Save(aux);
+			}
+			dat.TerminarSave();
 		}
-		dat.TerminarSave();
 		
 	}
 	public void BorrarAlumno(clsAlumno alumno) throws IOException{
@@ -144,20 +150,27 @@ public class clsGestor {
 	}
 	public void ModificarProfesor(clsProfesor prof, String nom, String ap1, String ap2, String id, String depart) throws IOException, DuplicadoException{
 		LinkedList<clsProfesor> lista=ListaProfesores();
-		lista.remove(prof);
+		HashSet<clsProfesor> set=new HashSet<clsProfesor>();
+		set.addAll(lista);
+		set.remove(prof);
+		int indx=lista.indexOf(prof);
 		prof.setNombre(nom);
 		prof.setAp1(ap1);
 		prof.setAp2(ap2);
 		prof.setId_profesor(id);
 		prof.setDepartamento(depart);
-		lista.add(prof);
-		enFicDatos f=enFicDatos.DAT_PROFESORES;
-		dat.ResetFile(f);
-		dat.ComenzarSave(f);
-		for(clsProfesor aux:lista){
-			dat.Save(aux);
+		if(set.add(prof)==false){
+			throw new DuplicadoException();
+		} else{
+			lista.set(indx, prof);
+			enFicDatos f=enFicDatos.DAT_PROFESORES;
+			dat.ResetFile(f);
+			dat.ComenzarSave(f);
+			for(clsProfesor aux:lista){
+				dat.Save(aux);
+			}
+			dat.TerminarSave();
 		}
-		dat.TerminarSave();
 	}
 	public void BorrarProfesor(clsProfesor prof) throws IOException{
 		LinkedList<clsProfesor> lista=ListaProfesores();
@@ -278,16 +291,9 @@ public class clsGestor {
 		}
 		return indx;
 	}
-	public void BorrarMatricula(clsAlumno alum, clsAsignatura asig) throws IOException{
+	public void BorrarMatricula(clsMatricula borr) throws IOException{
 		LinkedList<clsMatricula> lista=ListaMatriculas();
-		clsMatricula borr=new clsMatricula();
-		borr.setId_alumno(alum.getId_alumno());
-		borr.setId_asignatura(asig.getId_asinatura());
-		for(clsMatricula aux:lista){
-			if(aux.equals(borr)){
-				lista.remove(borr);
-			}
-		}
+		lista.remove(borr);
 		enFicDatos f=enFicDatos.DAT_MATRICULAS;
 		dat.ResetFile(f);
 		dat.ComenzarSave(f);

@@ -1,4 +1,6 @@
 
+import javax.swing.JOptionPane;
+
 import LP.*;
 public class clsMain {
 

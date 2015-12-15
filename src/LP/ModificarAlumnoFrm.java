@@ -53,11 +53,14 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(30, 328, 89, 23);
+		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(131, 328, 89, 23);
+		btnCancelar.setActionCommand("cancelar");
+		btnCancelar.addActionListener(this);
 		getContentPane().add(btnCancelar);
 		
 		this.setSize(580, 400);
@@ -66,13 +69,17 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		clsAlumno alumno=(clsAlumno)listAlum.getSelectedValue();
-		ModificarAlumnoInternFrm internalFrame = new ModificarAlumnoInternFrm(alumno.getNombre(), alumno.getAp1(), alumno.getAp2(), alumno.getId_alumno(), ""+alumno.getAno_matricula());
-		internalFrame.setBounds(288, 11, 238, 292);
-		getContentPane().add(internalFrame);
-		internalFrame.setSize(new Dimension(252, 323));
-		internalFrame.addInternalFrameListener(this);
-		internalFrame.setVisible(true);
+		if(e.getActionCommand().equals("aceptar")){
+			clsAlumno alumno=(clsAlumno)listAlum.getSelectedValue();
+			ModificarAlumnoInternFrm internalFrame = new ModificarAlumnoInternFrm(alumno.getNombre(), alumno.getAp1(), alumno.getAp2(), alumno.getId_alumno(), ""+alumno.getAno_matricula());
+			internalFrame.setBounds(288, 11, 238, 292);
+			getContentPane().add(internalFrame);
+			internalFrame.setSize(new Dimension(252, 323));
+			internalFrame.addInternalFrameListener(this);
+			internalFrame.setVisible(true);
+		} else if(e.getActionCommand().equals("cancelar")){
+			this.dispose();
+		}
 	}
 
 	@Override
@@ -84,15 +91,33 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 	@Override
 	public void internalFrameClosing(InternalFrameEvent e) {
 		// TODO Auto-generated method stub
-		listAlum=null;
-		this.revalidate();
-		this.repaint();
-	}
+		LinkedList<clsAlumno> alumnos=new LinkedList<clsAlumno>();
+		try {
+			alumnos=ges.ListaAlumnos();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
+		listAlum.setModel(modelAlm);
+		listAlum.repaint();
+		this.getContentPane().revalidate();
+}
 
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
 		// TODO Auto-generated method stub
-		
+		LinkedList<clsAlumno> alumnos=new LinkedList<clsAlumno>();
+		try {
+			alumnos=ges.ListaAlumnos();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
+		listAlum.setModel(modelAlm);
+		listAlum.repaint();
+		this.getContentPane().revalidate();
 	}
 
 	@Override
