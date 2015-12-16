@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import LD.clsDatos;
@@ -351,16 +354,9 @@ public class clsGestor {
 		}
 		return prof;
 	}
-	public void EliminarImparticion(clsAsignatura asig, clsProfesor prof) throws IOException{
+	public void EliminarImparticion(clsImparte borr) throws IOException{
 		LinkedList<clsImparte> lista=ListaImparticiones();
-		clsImparte borr=new clsImparte();
-		borr.setId_profesor(prof.getId_profesor());
-		borr.setId_asignatura(asig.getId_asinatura());
-		for(clsImparte aux:lista){
-			if(aux.equals(borr)){
-				lista.remove(borr);
-			}
-		}
+		lista.remove(borr);
 		enFicDatos f=enFicDatos.DAT_IMPARTICIONES;
 		dat.ResetFile(f);
 		dat.ComenzarSave(f);
@@ -370,12 +366,16 @@ public class clsGestor {
 		dat.TerminarSave();
 	}
 	public LinkedList<clsAlumno> OrdenarAlm() throws IOException{
-		LinkedList<clsAlumno> temp=ListaAlumnos();
-		TreeSet<clsAlumno> tree=new TreeSet<clsAlumno>();
-		tree.addAll(temp);
-		LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
-		for(clsAlumno aux:tree){
-			lista.add(aux);
+		LinkedList<clsAlumno> lista=ListaAlumnos();
+		for(int i=0; i<lista.size(); i++){
+			for(int j=0; j<lista.size()-1; j++){
+				clsAlumno temp=null;
+				if(lista.get(i).compareTo(lista.get(j))<0){
+					temp=lista.get(i);
+					lista.set(i, lista.get(j));
+					lista.set(j, temp);
+				}
+			}
 		}
 		return lista;
 	}
@@ -404,5 +404,46 @@ public class clsGestor {
 			throw new VacioException();
 			
 		}
+	}
+	
+	public Map<Integer, clsAlumno> MapaAlmAlf() throws IOException{
+		LinkedList<clsAlumno> l;
+		l=OrdenarAlm();
+		Map<Integer, clsAlumno> mapa=new TreeMap<Integer, clsAlumno>();
+		for (int i=0; i<l.size(); i++){
+			clsAlumno c=l.get(i);
+			mapa.put(i, c);
+		}
+		return mapa;
+	}
+	public Map<Integer, clsAlumno> MapaAlmYear() throws IOException{
+		LinkedList<clsAlumno> l;
+		l=OrdenarPorFecha();
+		Map<Integer, clsAlumno> mapa=new TreeMap<Integer, clsAlumno>();
+		for (int i=0; i<l.size(); i++){
+			clsAlumno c=l.get(i);
+			mapa.put(i, c);
+		}
+		return mapa;
+	}
+	public Map<Integer, clsProfesor> MapaProfAlf() throws IOException{
+		LinkedList<clsProfesor> l;
+		l=OrdenarProf();
+		Map<Integer, clsProfesor> mapa=new TreeMap<Integer, clsProfesor>();
+		for (int i=0; i<l.size(); i++){
+			clsProfesor c=l.get(i);
+			mapa.put(i, c);
+		}
+		return mapa;
+	}
+	public Map<Integer, clsProfesor> MapaProfDept() throws IOException{
+		LinkedList<clsProfesor> l;
+		l=OrdenarPorDepart();
+		Map<Integer, clsProfesor> mapa=new TreeMap<Integer, clsProfesor>();
+		for (int i=0; i<l.size(); i++){
+			clsProfesor c=l.get(i);
+			mapa.put(i, c);
+		}
+		return mapa;
 	}
 }

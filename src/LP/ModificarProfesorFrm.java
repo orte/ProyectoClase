@@ -62,6 +62,7 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		getContentPane().add(btnCancelar);
 		
 		this.setSize(580, 400);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	@Override

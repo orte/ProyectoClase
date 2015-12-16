@@ -29,6 +29,7 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 	private clsGestor ges=new clsGestor();
 	
 	public ModificarAlumnoFrm() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Modificar alumno");
 		getContentPane().setLayout(null);
 		

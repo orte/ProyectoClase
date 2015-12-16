@@ -106,7 +106,7 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 		panel.add(aceptar);
 		aceptar.setEnabled(false);
 		aceptar.addActionListener(this);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(new Dimension(420, 315));
 	}
 

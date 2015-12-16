@@ -124,6 +124,9 @@ public class clsMenu {
 		*/
 	}
 	public void EliminarAlumno(){
+		/**
+		 * Elimina un alumno
+		 */
 		EliminarAlumnoFrm a=new EliminarAlumnoFrm();
 		a.setVisible(true);
 		/*LinkedList<clsAlumno> lista=new LinkedList<clsAlumno>();
@@ -525,7 +528,9 @@ public class clsMenu {
 		
 	}
 	public void BorrarImparticion(){
-		LinkedList<clsAsignatura> asign=new LinkedList<clsAsignatura>();
+		EliminarImparteFrm a=new EliminarImparteFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAsignatura> asign=new LinkedList<clsAsignatura>();
 		try {
 			asign=ges.ListaAsignaturas();
 			ges.ComprobarVacio(asign);
@@ -559,11 +564,13 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch (VacioException e) {
 			System.out.println(e.getMessage()+"(no hay asignaturas dadas de alta en el sistema)");
-		}
+		}*/
 		
 	}
 	public void AlumnosAlf(){
-		LinkedList<clsAlumno> lista;
+		ListasAlumnosFrm a=new ListasAlumnosFrm();
+		a.setVisible(true);
+		/*LinkedList<clsAlumno> lista;
 		try {
 			lista = ges.OrdenarAlm();
 			ges.ComprobarVacio(lista);
@@ -575,21 +582,23 @@ public class clsMenu {
 			e.printStackTrace();
 		} catch (VacioException e){
 			System.out.println(e.getMessage()+" (no hay alumnos dados de alta en el sistema)");
-		}
+		}*/
 	}
 	public void ProfesoresAlf(){
-		LinkedList<clsProfesor> lista;
-		try{
-			lista = ges.OrdenarProf();
-			ges.ComprobarVacio(lista);
-			for(clsProfesor aux:lista){
-				System.out.println(aux.toString());
-			}
-		} catch (IOException e){
-			e.printStackTrace();
-		} catch (VacioException e){
-			System.out.println(e.getMessage()+" (no hay profesores dados de alta en el sistema)");
-		}
+		ListasProfesoresFrm a=new ListasProfesoresFrm();
+		a.setVisible(true);
+//		LinkedList<clsProfesor> lista;
+//		try{
+//			lista = ges.OrdenarProf();
+//			ges.ComprobarVacio(lista);
+//			for(clsProfesor aux:lista){
+//				System.out.println(aux.toString());
+//			}
+//		} catch (IOException e){
+//			e.printStackTrace();
+//		} catch (VacioException e){
+//			System.out.println(e.getMessage()+" (no hay profesores dados de alta en el sistema)");
+//		}
 	}
 	public void AlumnosFecha(){
 		LinkedList<clsAlumno> lista;

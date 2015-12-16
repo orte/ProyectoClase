@@ -42,8 +42,6 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 	private JMenuItem mntmEliminarImparticion;
 	private JMenuItem mntmAlumnosAlf;
 	private JMenuItem mntmProfesoresAlf;
-	private JMenuItem mntmAlumnosPorAno;
-	private JMenuItem mntmProfesoresPorDepartamento;
 	private JLabel lblDeLaUniversidad;
 	private JPanel panel;
 	
@@ -153,25 +151,15 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 		mnListas = new JMenu("Listas");
 		menuBar.add(mnListas);
 		
-		mntmAlumnosAlf = new JMenuItem("Alumnos por orden alfab\u00E9tico");
+		mntmAlumnosAlf = new JMenuItem("Alumnos");
 		mntmAlumnosAlf.setActionCommand("alumnos alf");
 		mntmAlumnosAlf.addActionListener(this);
 		mnListas.add(mntmAlumnosAlf);
 		
-		mntmProfesoresAlf = new JMenuItem("Profesores por orden alfab\u00E9tico");
+		mntmProfesoresAlf = new JMenuItem("Profesores");
 		mntmProfesoresAlf.setActionCommand("profes alf");
 		mntmProfesoresAlf.addActionListener(this);
 		mnListas.add(mntmProfesoresAlf);
-		
-		mntmAlumnosPorAno = new JMenuItem("Alumnos por a\u00F1o de matriculaci\u00F3n");
-		mntmAlumnosPorAno.setActionCommand("alumnos por ano");
-		mntmAlumnosPorAno.addActionListener(this);
-		mnListas.add(mntmAlumnosPorAno);
-		
-		mntmProfesoresPorDepartamento = new JMenuItem("Profesores por departamento");
-		mntmProfesoresPorDepartamento.setActionCommand("profesores dept");
-		mntmProfesoresPorDepartamento.addActionListener(this);
-		mnListas.add(mntmProfesoresPorDepartamento);
 		
 		group.add(mntmNuevoAlumno);
 		group.add(mntmNuevoProfesor);
@@ -186,8 +174,6 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 		group.add(mntmEliminarImparticion);
 		group.add(mntmAlumnosAlf);
 		group.add(mntmProfesoresAlf);
-		group.add(mntmAlumnosPorAno);
-		group.add(mntmProfesoresPorDepartamento);
 		
 		this.setVisible(true);
 	}
@@ -210,8 +196,8 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 		case "eliminar profesor": menu.EliminarProfesor(); break;
 		case "eliminar matricula": menu.EliminarMatricula(); break;
 		case "eliminar imparticion": menu.BorrarImparticion(); break;
-		case "alummnos alf": menu.AlumnosAlf(); break;
-		case "profesores alf": menu.ProfesoresAlf(); break;
+		case "alumnos alf": menu.AlumnosAlf(); break;
+		case "profes alf": menu.ProfesoresAlf(); break;
 		case "alumnos por ano": menu.AlumnosFecha(); break;
 		case  "profesores dept": menu.ProfDepart(); break;
 		

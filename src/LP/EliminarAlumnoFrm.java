@@ -31,6 +31,7 @@ public class EliminarAlumnoFrm extends JFrame implements ActionListener, ListSel
 	private clsGestor ges=new clsGestor();
 	
 	public EliminarAlumnoFrm() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Eliminar alumno");
 		getContentPane().setLayout(null);
 		

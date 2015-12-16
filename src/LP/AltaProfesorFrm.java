@@ -95,7 +95,7 @@ public class AltaProfesorFrm extends JFrame implements ActionListener, DocumentL
 		panel.add(aceptar);
 		aceptar.setEnabled(false);
 		aceptar.addActionListener(this);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(new Dimension(420, 315));
 	}
 
