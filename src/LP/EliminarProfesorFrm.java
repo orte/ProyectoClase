@@ -27,6 +27,7 @@ public class EliminarProfesorFrm extends JFrame implements ActionListener, ListS
 	private clsGestor ges=new clsGestor();
 	
 	public EliminarProfesorFrm() {
+		setResizable(false);
 		setTitle("Eliminar profesor");
 		getContentPane().setLayout(null);
 		

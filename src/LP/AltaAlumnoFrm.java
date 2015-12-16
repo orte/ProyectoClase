@@ -48,6 +48,7 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 	private JComboBox comboBox;
 	
 	public AltaAlumnoFrm(){
+		setResizable(false);
 		setTitle("Alta de alumno");
 		lblTitulo=new JLabel("Introduzca los datos del alumno");
 		lblNombre=new JLabel("Nombre");
@@ -141,13 +142,21 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(txtNombre.getText().equals("")==false&&txtAp1.getText().equals("")==false&&txtAp2.getText().equals("")==false&&txtId.getText().equals("")==false){
+			aceptar.setEnabled(true);
+		} else{
+			aceptar.setEnabled(false);
+		}
 	}
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(txtNombre.getText().equals("")==false&&txtAp1.getText().equals("")==false&&txtAp2.getText().equals("")==false&&txtId.getText().equals("")==false){
+			aceptar.setEnabled(true);
+		} else{
+			aceptar.setEnabled(false);
+		}
 	}
 	
 	

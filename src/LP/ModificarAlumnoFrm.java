@@ -29,6 +29,7 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 	private clsGestor ges=new clsGestor();
 	
 	public ModificarAlumnoFrm() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Modificar alumno");
 		getContentPane().setLayout(null);
@@ -78,6 +79,7 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 			internalFrame.setSize(new Dimension(252, 323));
 			internalFrame.addInternalFrameListener(this);
 			internalFrame.setVisible(true);
+			listAlum.setEnabled(false);
 		} else if(e.getActionCommand().equals("cancelar")){
 			this.dispose();
 		}
@@ -101,6 +103,7 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 		}
 		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
 		listAlum.setModel(modelAlm);
+		listAlum.setEnabled(true);
 		listAlum.repaint();
 		this.getContentPane().revalidate();
 }
@@ -117,6 +120,7 @@ public class ModificarAlumnoFrm extends JFrame implements ActionListener, Intern
 		}
 		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
 		listAlum.setModel(modelAlm);
+		listAlum.setEnabled(true);
 		listAlum.repaint();
 		this.getContentPane().revalidate();
 	}

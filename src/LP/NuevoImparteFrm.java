@@ -3,6 +3,7 @@ package LP;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
@@ -36,6 +37,7 @@ public class NuevoImparteFrm extends JFrame implements ListSelectionListener, Ac
 	private JButton btnCancelar;
 
 	public NuevoImparteFrm() {
+		setResizable(false);
 		setTitle("Nueva impartición");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 337);
@@ -68,16 +70,24 @@ public class NuevoImparteFrm extends JFrame implements ListSelectionListener, Ac
 		try{
 			asigns=ges.ListaAsignaturas();
 			LinkedList <clsImparte> impart=ges.ListaImparticiones();
-			for (clsAsignatura aux:asigns){
-				for(clsImparte aux1:impart){
-					if(aux.getId_asinatura().equals(aux1.getId_asignatura())){
-						asigns.remove(aux);
+			clsImparte[] arr1=new clsImparte[impart.size()];
+			for(int i=0; i<arr1.length; i++){
+				arr1[i]=impart.get(i);
+			}
+			clsAsignatura[] arr2=new clsAsignatura[asigns.size()];
+			for(int i=0; i<arr2.length; i++){
+				arr2[i]=asigns.get(i);
+			}
+			for (int j=0; j<arr2.length; j++){
+				for(int i=0; i<arr1.length; i++){
+					if(arr2[j].getId_asinatura().equals(arr1[i].getId_asignatura())){
+						asigns.remove(arr2[j]);
 					}
 				}
 			}
 		} catch (IOException e){
 			e.printStackTrace();
-		}
+		} 
 		ListaAsignMdl modelAsgn=new ListaAsignMdl(asigns);
 		listAsign.setModel(modelAsgn);
 		listAsign.setBounds(234, 76, 177, 151);
@@ -92,11 +102,14 @@ public class NuevoImparteFrm extends JFrame implements ListSelectionListener, Ac
 		contentPane.add(lblAsignaturas);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
 		btnAceptar.setBounds(117, 253, 89, 23);
 		contentPane.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setActionCommand("cancelar");
+		btnCancelar.addActionListener(this);
 		btnCancelar.setBounds(222, 253, 89, 23);
 		contentPane.add(btnCancelar);
 	}
@@ -110,15 +123,19 @@ public class NuevoImparteFrm extends JFrame implements ListSelectionListener, Ac
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		try {
-			clsImparte nueva=ges.NuevaImparticion(listProf.getSelectedValue(), listAsign.getSelectedValue());
-			JOptionPane.showMessageDialog(this, "Enhorabuena! Hay una nueva impartición. "+nueva.toString());
+		if(arg0.getActionCommand().equals("aceptar")){
+			try {
+				clsImparte nueva=ges.NuevaImparticion(listProf.getSelectedValue(), listAsign.getSelectedValue());
+				JOptionPane.showMessageDialog(this, "Enhorabuena! Hay una nueva impartición. "+nueva.toString());
+				this.dispose();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DuplicadoException e){
+				JOptionPane.showMessageDialog(this, "Ha ocurrido un error, este alumno ya está matriculado en esta asignatura");
+			}
+		} else if(arg0.getActionCommand().equals("cancelar")){
 			this.dispose();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DuplicadoException e){
-			JOptionPane.showMessageDialog(this, "Ha ocurrido un error, este alumno ya está matriculado en esta asignatura");
 		}
 	}
 }

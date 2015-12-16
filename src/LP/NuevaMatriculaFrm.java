@@ -37,6 +37,7 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 	private JButton btnCancelar;
 
 	public NuevaMatriculaFrm() {
+		setResizable(false);
 		setTitle("Nueva Matr\u00EDcula");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 337);
@@ -85,11 +86,14 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 		contentPane.add(lblAsignaturas);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
 		btnAceptar.setBounds(117, 253, 89, 23);
 		contentPane.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setActionCommand("cancelar");
+		btnCancelar.addActionListener(this);
 		btnCancelar.setBounds(222, 253, 89, 23);
 		contentPane.add(btnCancelar);
 	}
@@ -103,15 +107,19 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		try {
-			clsMatricula nueva=ges.NuevaMatricula(listAlum.getSelectedValue(), listAsign.getSelectedValue());
-			JOptionPane.showMessageDialog(this, "Enhorabuena!, has realizado una matrícula. "+nueva.toString());
+		if(arg0.getActionCommand().equals("aceptar")){
+			try {
+				clsMatricula nueva=ges.NuevaMatricula(listAlum.getSelectedValue(), listAsign.getSelectedValue());
+				JOptionPane.showMessageDialog(this, "Enhorabuena!, has realizado una matrícula. "+nueva.toString());
+				this.dispose();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DuplicadoException e){
+				JOptionPane.showMessageDialog(this, "Ha ocurrido un error, este alumno ya está matriculado en esta asignatura");
+			}
+		} else if(arg0.getActionCommand().equals("cancelar")){
 			this.dispose();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DuplicadoException e){
-			JOptionPane.showMessageDialog(this, "Ha ocurrido un error, este alumno ya está matriculado en esta asignatura");
 		}
 	}
 }

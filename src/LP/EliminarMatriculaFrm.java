@@ -28,6 +28,7 @@ public class EliminarMatriculaFrm extends JFrame implements ActionListener, List
 	private clsGestor ges=new clsGestor();
 	
 	public EliminarMatriculaFrm() {
+		setResizable(false);
 		setTitle("Eliminar matricula");
 		getContentPane().setLayout(null);
 		

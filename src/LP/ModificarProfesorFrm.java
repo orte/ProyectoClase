@@ -27,6 +27,7 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 	private clsGestor ges=new clsGestor();
 	
 	public ModificarProfesorFrm() {
+		setResizable(false);
 		setTitle("Modificar profesor");
 		getContentPane().setLayout(null);
 		
@@ -76,6 +77,7 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 			internalFrame.setSize(new Dimension(252, 323));
 			internalFrame.addInternalFrameListener(this);
 			internalFrame.setVisible(true);
+			listProf.setEnabled(false);
 		} else if(e.getActionCommand().equals("cancelar")){
 			this.dispose();
 		}
@@ -99,6 +101,7 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		}
 		ListaProfeMdl modelProf=new ListaProfeMdl(profes);
 		listProf.setModel(modelProf);
+		listProf.setEnabled(true);
 		listProf.repaint();
 		this.getContentPane().revalidate();
 }
@@ -115,6 +118,7 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		}
 		ListaProfeMdl modelProf=new ListaProfeMdl(profes);
 		listProf.setModel(modelProf);
+		listProf.setEnabled(true);
 		listProf.repaint();
 		this.getContentPane().revalidate();
 	}

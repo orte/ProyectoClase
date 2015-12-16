@@ -28,14 +28,15 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 	private clsGestor ges=new clsGestor();
 	
 	public EliminarImparteFrm() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Eliminar impartición");
 		getContentPane().setLayout(null);
 		
-		lblSeleccionaLaImpart = new JLabel("Selecciona la matricula que deseas eliminar");
+		lblSeleccionaLaImpart = new JLabel("Selecciona la relación entre profesor y asignatura que deseas eliminar");
 		lblSeleccionaLaImpart.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblSeleccionaLaImpart.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeleccionaLaImpart.setBounds(20, 11, 247, 14);
+		lblSeleccionaLaImpart.setBounds(47, 11, 439, 14);
 		getContentPane().add(lblSeleccionaLaImpart);
 		
 		list = new JList<clsImparte>();
@@ -48,24 +49,24 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 		}
 		ListaImparteMdl modelImpart=new ListaImparteMdl(impartes);
 		list.setModel(modelImpart);
-		list.setBounds(10, 36, 294, 259);
+		list.setBounds(47, 36, 449, 259);
 		list.addListSelectionListener(this);
 		getContentPane().add(list);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(20, 308, 89, 23);
+		btnAceptar.setBounds(161, 306, 89, 23);
 		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
 		btnAceptar.setEnabled(false);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(179, 308, 89, 23);
+		btnCancelar.setBounds(291, 306, 89, 23);
 		btnCancelar.setActionCommand("cancelar");
 		btnCancelar.addActionListener(this);
 		getContentPane().add(btnCancelar);
 		
-		this.setSize(328, 401);
+		this.setSize(543, 401);
 	}
 
 	@Override

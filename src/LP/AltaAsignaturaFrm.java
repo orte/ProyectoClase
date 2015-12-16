@@ -41,6 +41,7 @@ public class AltaAsignaturaFrm extends JFrame implements ActionListener, Documen
 	private JPanel panel;
 	
 	public AltaAsignaturaFrm(){
+		setResizable(false);
 		setTitle("Alta de asignatura");
 		lblTitulo=new JLabel("Introduzca los datos de la asignatura");
 		lblNombre=new JLabel("Nombre");
@@ -122,18 +123,28 @@ public class AltaAsignaturaFrm extends JFrame implements ActionListener, Documen
 		// TODO Auto-generated method stub
 		if(txtNombre.getText().equals("")==false&&txtDesc.getText().equals("")==false&&comboBox.getSelectedItem().equals("")==false&&txtId.getText().equals("")==false){
 			aceptar.setEnabled(true);
+		} else{
+			aceptar.setEnabled(false);
 		}
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(txtNombre.getText().equals("")==false&&txtDesc.getText().equals("")==false&&comboBox.getSelectedItem().equals("")==false&&txtId.getText().equals("")==false){
+			aceptar.setEnabled(true);
+		} else{
+			aceptar.setEnabled(false);
+		}
 	}
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(txtNombre.getText().equals("")==false&&txtDesc.getText().equals("")==false&&comboBox.getSelectedItem().equals("")==false&&txtId.getText().equals("")==false){
+			aceptar.setEnabled(true);
+		} else{
+			aceptar.setEnabled(false);
+		}
 	}
 }
