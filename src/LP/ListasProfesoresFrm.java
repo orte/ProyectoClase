@@ -17,6 +17,12 @@ import LN.clsGestor;
 import LN.clsProfesor;
 import LP.ListasAlumnosFrm.TablaAlumnosMdl;
 
+/**
+ * Clase ventana que hereda de JFrame y que muestra una tabla con los profesores dados de alta en el sistema. Tiene un botón
+ * para configurar el orden en el que se quieren ver los elementos de la tabla, si ordenados alfabéticamente o por departamento
+ * @author jon.orte
+ *
+ */
 public class ListasProfesoresFrm extends JFrame implements ActionListener{
 	private Map<Integer, clsProfesor> profes;
 	private JTable table;
@@ -54,6 +60,12 @@ public class ListasProfesoresFrm extends JFrame implements ActionListener{
 		getContentPane().add(btnOrden);
 		this.setSize(667, 433);
 	}
+	/**
+	 * Clase interna usada de modelo de tabla para la tabla de profesores que extiende de AbstractTableModel. Tiene dos arrays 
+	 * como atributos, uno de Strings con los nombres de las columnas y otro bidimensional de la clase Object para los datos. 
+	 * Para rellenar ese array se usan los datos de un Map.
+	 * @author jon.orte
+	 */
 	class TablaProfesoresMdl extends AbstractTableModel{
 
 		private String[] columnNames={"Departamento", "Nombre", "Primer apellido", "Segundo apellido", "ID"};
@@ -126,6 +138,11 @@ public class ListasProfesoresFrm extends JFrame implements ActionListener{
         }
 		
 	}
+	/**
+	 * Al pulsar el botón que determina el orden de los elementos de la tabla, se cargará el mapa de profesores con el órden
+	 * que corresponda y se actualizará la tabla, además de cambiar el título del botón
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

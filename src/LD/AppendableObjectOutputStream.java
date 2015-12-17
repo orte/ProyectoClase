@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
+/**
+ * Objeto que se usará cuando se quiera añadir un objeto a un fichero ya existente
+ * @author jon.orte
+ *
+ */
 public class AppendableObjectOutputStream extends ObjectOutputStream 
 {
 

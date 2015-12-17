@@ -24,6 +24,13 @@ import java.util.TreeMap;
 import javax.swing.JButton;
 import java.awt.Font;
 
+/**
+ * Clase ventana que hereda de JFrame y que muestra una tabla con los alumnos dados de alta en el sistema. Tiene un botón
+ * para configurar el orden en el que se quieren ver los elementos de la tabla, si ordenados alfabéticamente o por año 
+ * de matriculación
+ * @author jon.orte
+ *
+ */
 public class ListasAlumnosFrm extends JFrame implements ActionListener{
 	private Map<Integer, clsAlumno> alumnos;
 	private JTable table;
@@ -61,6 +68,12 @@ public class ListasAlumnosFrm extends JFrame implements ActionListener{
 		getContentPane().add(btnOrden);
 		this.setSize(667, 433);
 	}
+	/**
+	 * Clase interna usada de modelo de tabla para la tabla de alumnos que extiende de AbstractTableModel. Tiene dos arrays 
+	 * como atributos, uno de Strings con los nombres de las columnas y otro bidimensional de la clase Object para los datos. 
+	 * Para rellenar ese array se usan los datos de un Map.
+	 * @author jon.orte
+	 */
 	class TablaAlumnosMdl extends AbstractTableModel{
 
 		private String[] columnNames={"Nombre", "Primer apellido", "Segundo apellido", "ID", "Año de matriculación"};
@@ -131,6 +144,11 @@ public class ListasAlumnosFrm extends JFrame implements ActionListener{
         }
 		
 	}
+	/**
+	 * Al pulsar el botón que determina el orden de los elementos de la tabla, se cargará el mapa de alumnos con el órden
+	 * que corresponda y se actualizará la tabla, además de cambiar el título del botón
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

@@ -7,6 +7,11 @@ import javax.swing.DefaultListModel;
 import LN.clsImparte;
 import LN.clsMatricula;
 
+/**
+ * Modelo para las JList de imparticiones, que extiende de DefaultListModel
+ * @author jon.orte
+ *
+ */
 public class ListaImparteMdl extends DefaultListModel<clsImparte>{
 	
 	private static final long serialVersionUID = 1L;

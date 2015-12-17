@@ -8,6 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**
+ * clase que hereda de JPanel usada para poner una imagen de fondo de pantalla al pasarle la ruta del fichero de la imagen
+ * Sacada de: http://stackoverflow.com/questions/1064977/setting-background-images-in-jframe
+ *
+ */
 public class JPanelWithBackground extends JPanel {
 
 	  private Image backgroundImage;

@@ -18,7 +18,16 @@ import javax.swing.event.ListSelectionListener;
 import LN.clsGestor;
 import LN.clsImparte;
 import LN.clsMatricula;
+import java.awt.Component;
+import java.awt.Rectangle;
 
+/**
+ * Clase ventana que hereda de JFrame y muestra una lista con las relaciones entre profesores y asignaturas guardadas, con 
+ * el fin de poder seleccionar una y, al pulsar el botón aceptar, borrarla del sistema. Implementa las interfaces 
+ * ActionListener y ListSelectionListener
+ * @author jon.orte
+ *
+ */
 public class EliminarImparteFrm extends JFrame implements ActionListener, ListSelectionListener{
 	
 	private JLabel lblSeleccionaLaImpart;
@@ -28,6 +37,7 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 	private clsGestor ges=new clsGestor();
 	
 	public EliminarImparteFrm() {
+		setBounds(new Rectangle(200, 200, 0, 0));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Eliminar impartición");
@@ -54,6 +64,7 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 		getContentPane().add(list);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnAceptar.setBounds(161, 306, 89, 23);
 		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
@@ -69,6 +80,13 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 		this.setSize(543, 401);
 	}
 
+	/**
+	 * Cuando, después de seleccionar una impartición de la lista se pulsa Aceptar, se muestra un cuadro de dialogo preguntando
+	 * si realmente se quiere eliminar esa impartición. Si se pulsa SI, se coge el elemento seleccionado y se pasa al método de
+	 * la clase gestor EliminarImparticion para que lo elimine del sistema. Si no se pulsa SI se volverá a la selección
+	 * de la impartición, y si se pulsa cancelar se cerrará la ventana
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -102,6 +120,11 @@ public class EliminarImparteFrm extends JFrame implements ActionListener, ListSe
 		}
 	}
 
+	/**
+	 * Al crearse la ventana no hay ningún objeto seleccionado en la lista y el botón aceptar está desactivado. Por lo tanto,
+	 * si se selecciona un elemento de la lista, se activa el botón aceptar.
+	 * @author jon.orte
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub

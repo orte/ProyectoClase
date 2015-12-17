@@ -22,8 +22,13 @@ import javax.swing.event.DocumentListener;
 import LN.clsAlumno;
 import LN.clsGestor;
 import comun.DuplicadoException;
-import comun.NoEncontradoException;
 
+/**
+ * Ventana interna que hereda de JInternalFrame y muestra un formulario para modificar un alumno en concreto. En su constructor
+ * se reciben los atributos del alumno en cuestión para ponerlos por defecto en los campos de texto
+ * @author jon.orte
+ *
+ */
 public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
@@ -110,6 +115,12 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 		this.setSize(new Dimension(252, 323));
 	}
 
+	/**
+	 * Al pulsar el botón aceptar, se llama al método ModificarAlumno de la clase gestor para, con los nuevos atributos
+	 * modificar el alumno. Si este alumno modificado tiene un ID que coincide con el de alguno ya existente, se abre un
+	 * cuadro de diálogo avisando de ello
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -123,12 +134,6 @@ public class ModificarAlumnoInternFrm extends JInternalFrame implements ActionLi
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  catch (NoEncontradoException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (DuplicadoException e1) {

@@ -6,6 +6,11 @@ import javax.swing.DefaultListModel;
 
 import LN.clsAsignatura;
 
+/**
+ * Modelo para las JList de asignaturas, que extiende de DefaultListModel
+ * @author jon.orte
+ *
+ */
 public class ListaAsignMdl extends DefaultListModel<clsAsignatura>{
 	
 	private static final long serialVersionUID = 1L;

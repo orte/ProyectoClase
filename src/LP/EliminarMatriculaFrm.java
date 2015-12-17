@@ -19,6 +19,12 @@ import LN.clsGestor;
 import LN.clsMatricula;
 import LN.clsProfesor;
 
+/**
+ * Clase ventana que hereda de JFrame y muestra una lista con las matrículas guardadas, con el fin de poder seleccionar una y,
+ * al pulsar el botón aceptar, borrarla del sistema. Implementa las interfaces ActionListener y ListSelectionListener
+ * @author jon.orte
+ *
+ */
 public class EliminarMatriculaFrm extends JFrame implements ActionListener, ListSelectionListener{
 	
 	private JLabel lblSeleccionaLaMatricula;
@@ -68,6 +74,13 @@ public class EliminarMatriculaFrm extends JFrame implements ActionListener, List
 		this.setSize(328, 401);
 	}
 
+	/**
+	 * Cuando, después de seleccionar una matrícula de la lista se pulsa Aceptar, se muestra un cuadro de dialogo preguntando
+	 * si realmente se quiere eliminar esa matrícula. Si se pulsa SI, se coge el elemento seleccionado y se pasa al método de
+	 * la clase gestor BorrarMatriucla para que lo elimine del sistema. Si no se pulsa SI se volverá a la seleccióm de la 
+	 * matrícula, y si se pulsa cancelar se cerrará la ventana
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -103,6 +116,11 @@ public class EliminarMatriculaFrm extends JFrame implements ActionListener, List
 		}
 	}
 
+	/**
+	 * Al crearse la ventana no hay ningún objeto seleccionado en la lista y el botón aceptar está desactivado. Por lo tanto,
+	 * si se selecciona un elemento de la lista, se activa el botón aceptar.
+	 * @author jon.orte
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub

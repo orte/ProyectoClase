@@ -17,10 +17,15 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+/**
+ * Ventana del menú principal. Cuenta con un menuBar en la parte superior que contiene los diferentes menús con sus opciones
+ * a ejecutar con la aplicación. Según el elemento del menú que se seleccione se ejecutará una opción de la aplicación. 
+ * Implementa la interfaz ActionListener
+ * @author jon.orte
+ *
+ */
 public class MenuPrincipalFrm extends JFrame implements ActionListener{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel fondo;
 	private ButtonGroup group;
@@ -175,9 +180,14 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 		group.add(mntmAlumnosAlf);
 		group.add(mntmProfesoresAlf);
 		
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
+	/**
+	 * Según el botón del menú que se pulse, determinado por un actionCommand, se llamará a un método de la clase clsMenu que
+	 * creará la ventana necesaria para ejecutar esa función
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -198,8 +208,6 @@ public class MenuPrincipalFrm extends JFrame implements ActionListener{
 		case "eliminar imparticion": menu.BorrarImparticion(); break;
 		case "alumnos alf": menu.AlumnosAlf(); break;
 		case "profes alf": menu.ProfesoresAlf(); break;
-		case "alumnos por ano": menu.AlumnosFecha(); break;
-		case  "profesores dept": menu.ProfDepart(); break;
 		
 		}
 	}

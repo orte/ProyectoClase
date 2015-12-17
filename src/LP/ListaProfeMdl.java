@@ -6,6 +6,11 @@ import javax.swing.DefaultListModel;
 
 import LN.clsProfesor;
 
+/**
+ * Modelo para las JList de profesores, que extiende de DefaultListModel
+ * @author jon.orte
+ *
+ */
 public class ListaProfeMdl  extends DefaultListModel<clsProfesor>{
 	
 	private static final long serialVersionUID = 1L;

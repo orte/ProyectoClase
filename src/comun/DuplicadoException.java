@@ -1,5 +1,10 @@
 package comun;
 
+/**
+ * Excepción que se lanzará cuando dos elementos estén duplicados
+ * @author jon.orte
+ *
+ */
 public class DuplicadoException extends Exception {
 
 	private static final long serialVersionUID = 1L;

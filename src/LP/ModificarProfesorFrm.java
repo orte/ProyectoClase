@@ -17,6 +17,13 @@ import javax.swing.event.InternalFrameListener;
 import LN.clsGestor;
 import LN.clsProfesor;
 
+/**
+ * Clase de tipo ventana que muestra primero una lista con los profesores dados de alta en el sistema. Al seleccionar uno de 
+ * ellos y pulsar el botón aceptar, se abrirá un InternalFrame con un formulario para modificar el profesor seleccionado. 
+ * Al terminar y cerrarse el InternalFrame se actualizará la lista de profesores. Implementa ActionListener e 
+ * InternalFrameListener 
+ * @author jon.orte
+ */
 public class ModificarProfesorFrm extends JFrame implements ActionListener, InternalFrameListener{
 	
 	private static final long serialVersionUID = 1L;
@@ -66,6 +73,11 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
+	/**
+	 * Al seleccionar un profesor y pulsar el boton aceptar, se cogen sus atributos y se crea una InternalFrame de tipo 
+	 * ModificarProfeInternalFrm para poder modificarlo
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -89,6 +101,10 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		
 	}
 
+	/**
+	 * Escucha cuándo se cierra la ventana interna para actualizar los datos de la lista con el profesor modificado
+	 * @author jon.orte
+	 */
 	@Override
 	public void internalFrameClosing(InternalFrameEvent e) {
 		// TODO Auto-generated method stub
@@ -104,8 +120,12 @@ public class ModificarProfesorFrm extends JFrame implements ActionListener, Inte
 		listProf.setEnabled(true);
 		listProf.repaint();
 		this.getContentPane().revalidate();
-}
+	}
 
+	/**
+	 * Escucha cuándo se cierra la ventana interna para actualizar los datos de la lista con el profesor modificado
+	 * @author jon.orte
+	 */
 	@Override
 	public void internalFrameClosed(InternalFrameEvent e) {
 		// TODO Auto-generated method stub

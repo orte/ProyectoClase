@@ -1,10 +1,13 @@
 package LN;
 
+/**
+ * Objeto de la clase profesor, que hereda de la clase persona y que implementa la interfaz serializable. Además
+ * de los atributos heredados de clsPersona, tiene atributos que indican su ID y el departamento en el que trabaja
+ * @author jon.orte
+ *
+ */
 public class clsProfesor extends clsPersona implements java.io.Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5264759352002835871L;
 	private String departamento;
 	private String id_profesor;
@@ -22,6 +25,12 @@ public class clsProfesor extends clsPersona implements java.io.Serializable{
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
+	/**
+	 * HashCode generado usando el ID único de cada profesor
+	 * @author jon.orte
+	 * @return result, Int con el hashcode
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,6 +39,13 @@ public class clsProfesor extends clsPersona implements java.io.Serializable{
 				+ ((id_profesor == null) ? 0 : id_profesor.hashCode());
 		return result;
 	}
+	/**
+	 * Método equals usado para comprobar si dos profesores son iguales usando como criterio su ID
+	 * @author jon.orte
+	 * @return booleano que indica si la comparacion da true o false
+	 * @param obj objeto a comparar
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,6 +62,12 @@ public class clsProfesor extends clsPersona implements java.io.Serializable{
 			return false;
 		return true;
 	}
+	/**
+	 * Método toString que crea un string con el nombre, apellidos e ID del profesor
+	 * @author jon.orte
+	 * @return string con los atributos
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String string;

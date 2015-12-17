@@ -29,7 +29,12 @@ import java.awt.Component;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-
+/**
+ * Clase ventana, que hereda de JFrame que enseña un formulario para dar de alta a un alumno. Implementa
+ * las interfaces ActionListener y DocumentListener
+ * @author jon.orte
+ *
+ */
 public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentListener{
 	 
 	private static final long serialVersionUID = 1L;
@@ -111,6 +116,13 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 		this.setSize(new Dimension(420, 315));
 	}
 
+	/**
+	 * Acción que ocurrirá cuando se pulse el botón Aceptar. Se cogerán los datos del formulario y con ellos
+	 * se llamará al método nuevoAlumno de la clase gestor para crear un nuevo objeto de la clase alumno y 
+	 * guardarlo en su fichero. Después se enseñará una ventana de diálogo con un mensaje y si existe un alumno
+	 * con ese ID se abrirá otra.
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -131,6 +143,10 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 		}
 	}
 
+	/**
+	 * Método que escucha los eventos en los campos de texto para activar el botón Aceptar cuando ninguno esté vacío
+	 * @author jon.orte
+	 */
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
@@ -139,6 +155,11 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 		}
 	}
 
+	/**
+	 * Método que escucha los eventos en los campos de texto para activar el botón Aceptar cuando ninguno esté vacío. Si
+	 * al borrar algo de los mismos se queda alguno vacío, desactivará el botón
+	 * @author jon.orte
+	 */
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
@@ -149,6 +170,11 @@ public class AltaAlumnoFrm extends JFrame implements ActionListener, DocumentLis
 		}
 	}
 
+	/**
+	 * Método que escucha los eventos en los campos de texto para activar el botón Aceptar cuando ninguno esté vacío. Si
+	 * al borrar algo de los mismos se queda alguno vacío, desactivará el botón
+	 * @author jon.orte
+	 */
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub

@@ -6,6 +6,11 @@ import javax.swing.DefaultListModel;
 
 import LN.clsAlumno;
 
+/**
+ * Modelo para las JList de alumnos, que extiende de DefaultListModel
+ * @author jon.orte
+ *
+ */
 public class ListaAlumnoMdl extends DefaultListModel<clsAlumno>{
 	
 	private static final long serialVersionUID = 1L;

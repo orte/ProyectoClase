@@ -18,8 +18,13 @@ import javax.swing.JTextField;
 import LN.clsGestor;
 import LN.clsProfesor;
 import comun.DuplicadoException;
-import comun.NoEncontradoException;
 
+/**
+ * Ventana interna que hereda de JInternalFrame y muestra un formulario para modificar un profesor en concreto. En su 
+ * constructor se reciben los atributos del profesor en cuestión para ponerlos por defecto en los campos de texto
+ * @author jon.orte
+ *
+ */
 public class ModificarProfeInternFrm extends JInternalFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
@@ -104,7 +109,13 @@ public class ModificarProfeInternFrm extends JInternalFrame implements ActionLis
 		aceptar.addActionListener(this);
 		this.setSize(new Dimension(252, 323));
 	}
-
+	
+	/**
+	 * Al pulsar el botón aceptar, se llama al método ModificarProfesor de la clase gestor para, con los nuevos atributos
+	 * modificar el profesor. Si este profesor modificado tiene un ID que coincide con el de alguno ya existente, se abre un
+	 * cuadro de diálogo avisando de ello
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -118,9 +129,6 @@ public class ModificarProfeInternFrm extends JInternalFrame implements ActionLis
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  catch (NoEncontradoException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (DuplicadoException e1) {

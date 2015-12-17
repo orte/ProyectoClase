@@ -19,9 +19,17 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import comun.VacioException;
+
 import LN.clsAlumno;
 import LN.clsGestor;
 
+/**
+ * Clase ventana que hereda de JFrame y muestra una lista con los alumnos guardados, con el fin de poder seleccionar uno
+ * y, al pulsar el botón aceptar, borrarlo del sistema. Implementa las interfaces ActionListener y ListSelectionListener
+ * @author jon.orte
+ *
+ */
 public class EliminarAlumnoFrm extends JFrame implements ActionListener, ListSelectionListener{
 	
 	private JLabel lblSeleccionaElAlumno;
@@ -49,7 +57,7 @@ public class EliminarAlumnoFrm extends JFrame implements ActionListener, ListSel
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
 		list.setModel(modelAlm);
 		list.setBounds(10, 36, 294, 259);
@@ -70,8 +78,16 @@ public class EliminarAlumnoFrm extends JFrame implements ActionListener, ListSel
 		getContentPane().add(btnCancelar);
 		
 		this.setSize(328, 401);
+		
 	}
 
+	/**
+	 * Cuando, después de seleccionar un alumno de la lista se pulsa Aceptar, se muestra un cuadro de dialogo preguntando
+	 * si realmente se quiere eliminar ese alumno. Si se pulsa SI, se coge ese alumno seleccionado y se pasa por parámetro
+	 * al método de la clase gestor BorrarAlumno para que lo elimine del sistema. Si no se pulsa SI se volverá a la selección
+	 * de alumno, y si se pulsa cancelar se cerrará la ventana
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -107,6 +123,11 @@ public class EliminarAlumnoFrm extends JFrame implements ActionListener, ListSel
 		}
 	}
 
+	/**
+	 * Al crearse la ventana no hay ningún objeto seleccionado en la lista y el botón aceptar está desactivado. Por lo tanto,
+	 * si se selecciona un elemento de la lista, se activa el botón aceptar.
+	 * @author jon.orte
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub

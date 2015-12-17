@@ -23,6 +23,12 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Clase de tipo ventana que muestra dos listas, una con Alumnos y otra con Asignaturas. El usuario selecciona un elemento de
+ * casa una y con ellos se crea una nueva matrícula. Implementa ListSelectionListener y ActionListener
+ * @author jon.orte
+ *
+ */
 public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, ActionListener{
 
 	private static final long serialVersionUID = 1L;
@@ -63,6 +69,7 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 		ListaAlumnoMdl modelAlm=new ListaAlumnoMdl(alumnos);
 		listAlum.setModel(modelAlm);
 		listAlum.setBounds(20, 76, 177, 151);
+		listAlum.addListSelectionListener(this);
 		contentPane.add(listAlum);
 		
 		listAsign = new JList<clsAsignatura>();
@@ -75,6 +82,7 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 		ListaAsignMdl modelAsgn=new ListaAsignMdl(asigns);
 		listAsign.setModel(modelAsgn);
 		listAsign.setBounds(234, 76, 177, 151);
+		listAsign.addListSelectionListener(this);
 		contentPane.add(listAsign);
 		
 		lblAlumnos = new JLabel("Alumnos");
@@ -89,6 +97,7 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 		btnAceptar.setActionCommand("aceptar");
 		btnAceptar.addActionListener(this);
 		btnAceptar.setBounds(117, 253, 89, 23);
+		btnAceptar.setEnabled(false);
 		contentPane.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -98,12 +107,33 @@ public class NuevaMatriculaFrm extends JFrame implements ListSelectionListener, 
 		contentPane.add(btnCancelar);
 	}
 
+	/**
+	 * El botón Aceptar está desactivado por defecto. Este método sirve para que, cuando haya un elemento seleccionado en ambas
+	 * listas, el botón se active
+	 * @author jon.orte
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		boolean a=false;
+		boolean b=false;
+		if (listAlum.isSelectionEmpty()==false){
+			a=true;
+		}
+		if (listAsign.isSelectionEmpty()==false){
+			b=true;
+		}
+		if(a&b==true){
+			btnAceptar.setEnabled(true);
+		}
 	}
 
+	/**
+	 * Cuando se seleccionan un alumno y una asignatura de las listas, se cogen ambas selecciones y se pasan al método
+	 * NuevaMatricula del gestor para que se cree con ellos un nuevo objeto clsMatricula. Si la matrícula está repetida,
+	 * salta un cuadro de diálogo avisándolo. Si se pulsa Cancelar, se cierra la ventana
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

@@ -1,1 +1,0 @@
-Lati pringau

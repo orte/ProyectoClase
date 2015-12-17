@@ -6,6 +6,11 @@ import javax.swing.DefaultListModel;
 
 import LN.clsMatricula;
 
+/**
+ * Modelo para las JList de matriculas, que extiende de DefaultListModel
+ * @author jon.orte
+ *
+ */
 public class ListaMatriculasMdl extends DefaultListModel<clsMatricula>{
 	
 	private static final long serialVersionUID = 1L;

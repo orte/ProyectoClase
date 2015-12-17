@@ -1,13 +1,16 @@
 package LN;
 
-import java.util.Comparator;
 import java.io.Serializable;
 
-public class clsAlumno extends clsPersona implements Serializable, Comparator<clsAlumno>{
+/**
+ * Objeto de la clase Alumno, que hereda de la clase persona y que implementa la interfaz serializable. Además
+ * de los atributus heredados de clsPersona, tiene atributos que indican su ID y el año en el que se matricularon
+ * @author jon.orte
+ *
+ */
+public class clsAlumno extends clsPersona implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6963406561558035634L;
 
 	private int ano_matricula;
@@ -30,12 +33,24 @@ public class clsAlumno extends clsPersona implements Serializable, Comparator<cl
 	}
 
 	@Override
+	/**
+	 * Método toString que crea un string con el nombre, apellidos e ID del alumno
+	 * @author jon.orte
+	 * @return string con los atributos
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		String string;
 		string = nombre+" "+ap1+" "+ap2+". ID del alumno: "+id_alumno;
 		return string;
 	}
 
+	/**
+	 * HashCode generado usando el ID único de cada alumno
+	 * @author jon.orte
+	 * @return result, Int con el hashcode
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,6 +60,13 @@ public class clsAlumno extends clsPersona implements Serializable, Comparator<cl
 		return result;
 	}
 
+	/**
+	 * Método equals usado para comprobar si dos alumnos son iguales usando como criterio su ID
+	 * @author jon.orte
+	 * @return booleano que indica si la comparacion da true o false
+	 * @param obj objeto a comparar
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,12 +82,6 @@ public class clsAlumno extends clsPersona implements Serializable, Comparator<cl
 		} else if (!id_alumno.equals(other.id_alumno))
 			return false;
 		return true;
-	}
-
-	@Override
-	public int compare(clsAlumno o1, clsAlumno o2) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

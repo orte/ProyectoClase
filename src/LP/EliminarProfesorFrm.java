@@ -18,6 +18,12 @@ import javax.swing.event.ListSelectionListener;
 import LN.clsGestor;
 import LN.clsProfesor;
 
+/**
+ * Clase ventana que hereda de JFrame y muestra una lista con los profesores guardados, con el fin de poder seleccionar uno
+ * y, al pulsar el botón aceptar, borrarlo del sistema. Implementa las interfaces ActionListener y ListSelectionListener
+ * @author jon.orte
+ *
+ */
 public class EliminarProfesorFrm extends JFrame implements ActionListener, ListSelectionListener{
 	
 	private JLabel lblSeleccionaElProfe;
@@ -67,6 +73,13 @@ public class EliminarProfesorFrm extends JFrame implements ActionListener, ListS
 		this.setSize(328, 401);
 	}
 
+	/**
+	 * Cuando, después de seleccionar un profesor de la lista se pulsa Aceptar, se muestra un cuadro de dialogo preguntando
+	 * si realmente se quiere eliminar ese profesor. Si se pulsa SI, se coge ese profesor seleccionado y se pasa por parámetro
+	 * al método de la clase gestor BorrarProfesor para que lo elimine del sistema. Si no se pulsa SI se volverá a la selección
+	 * de profesor, y si se pulsa cancelar se cerrará la ventana
+	 * @author jon.orte
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -102,6 +115,11 @@ public class EliminarProfesorFrm extends JFrame implements ActionListener, ListS
 		}
 	}
 
+	/**
+	 * Al crearse la ventana no hay ningún objeto seleccionado en la lista y el botón aceptar está desactivado. Por lo tanto,
+	 * si se selecciona un elemento de la lista, se activa el botón aceptar.
+	 * @author jon.orte
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
